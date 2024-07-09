@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Increment/Decrement Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .tr-guest-type { display: inline-block; }
+    .tr-add-edit-guest, .another-class { margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <input type="text" placeholder="Add guests" id="totalRoomGuest" readonly>
+  <br>
+  <div class="tr-add-edit-guest">
+    <div class="tr-guest-type">
+      <label class="tr-guest">Room</label>
+    </div>
+    <div class="tr-qty">
+      <button class="minus">-</button>
+      <input type="text" value="1">
+      <button class="plus">+</button>
+    </div>
+  </div>
+  <div class="another-class">
+    <div class="tr-guest-type">
+      <label class="tr-guest">Guest</label>
+    </div>
+    <div class="tr-qty">
+      <button class="minus">-</button>
+      <input type="text" value="1">
+      <button class="plus">+</button>
+    </div>
+  </div>
+  
+  <!-- Output elements can be placed anywhere -->
+  <div id="output1"></div>
+  <div id="output2"></div>
+  
+  <script>
+    function initIncrementDecrement(context, outputSelector) {
+      $(context + ' .minus').click(function () {
+        var $input = $(this).parent().find('input');
+        var labelContent = $(this).parent().siblings('.tr-guest-type').find('label').text();
+        console.log(labelContent); // Save label content in a variable
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        $input.val(count);
+        $input.change();
+        updateOutputElement($input, outputSelector, labelContent); // Pass label content to the update function
+        updateTotalRoomGuest(); // Update the combined input field
+        return false;
+      });
+
+      $(context + ' .plus').click(function () {
+        var $input = $(this).parent().find('input');
+        var labelContent = $(this).parent().siblings('.tr-guest-type').find('label').text(); // Save label content in a variable
+        var count = parseInt($input.val()) + 1;
+        $input.val(count);
+        $input.change();
+        updateOutputElement($input, outputSelector, labelContent); // Pass label content to the update function
+        updateTotalRoomGuest(); // Update the combined input field
+        return false;
+      });
+    }
+
+    // Function to update the output element
+    function updateOutputElement($input, outputSelector, labelContent) {
+      // Update the specified output element with the current value and label content
+      $(outputSelector).text(labelContent + ': ' + $input.val());
+    }
+
+    // Function to update the combined input field
+    function updateTotalRoomGuest() {
+      var combinedText = $('#output1').text() + $('#output2').text();
+      $('#totalRoomGuest').val(combinedText);
+    }
+
+    $(document).ready(function() {
+      // Initialize the increment/decrement functionality for multiple contexts
+      initIncrementDecrement('.tr-add-edit-guest', '#output1');
+      initIncrementDecrement('.another-class', '#output2'); // Example for another context
+      updateTotalRoomGuest(); // Initialize the combined input field on load
+    });
+  </script>
+</body>
+</html>

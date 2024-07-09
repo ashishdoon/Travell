@@ -1,0 +1,64 @@
+.custom-calendar {
+  display: none;
+  text-align: center;
+}
+.custom-calendar .navigation {
+  padding-bottom: 10px;
+  position: relative;
+}
+.custom-calendar .monthYear {
+  font-size: 16px;
+  font-weight: 700;
+}
+.custom-calendar .prevMonth, 
+.custom-calendar .nextMonth {
+  display: block;
+  background-image: url(https://cdn-sb.mozu.com/44945-m1/cms/files/7f2bb6d7-f548-4fc7-b8bf-ce5a52b08f03);
+  background-repeat: no-repeat;
+  background-size: 6px;
+  background-position: top 5px left 7px;
+  background-color: transparent;
+  border: none;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  right: 15px;
+  text-indent: -9999px;  
+}
+.custom-calendar table {
+  width: 100%;
+}
+.custom-calendar th, 
+.custom-calendar td {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 41.25px;
+}
+.custom-calendar td {
+  padding: 5px;
+}
+.custom-calendar th {
+  color: #A1A1A1;
+}
+.custom-calendar td a {
+  display: block;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  transition: all .3s ease;
+}
+.custom-calendar td a:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.custom-calendar .selected a {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+
+
